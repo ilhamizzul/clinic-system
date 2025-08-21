@@ -11,12 +11,12 @@ return new class extends Migration
         Schema::create('patient', function (Blueprint $table) {
             $table->string('id_patient')->primary();
             $table->string('name');
-            $table->string('NIK');
+            $table->string('NIK', 16);
             $table->date('date_of_birth');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('gender');
-            $table->string('allergies')->nullable();
+            $table->text('address');
+            $table->string('phone_number', 16);
+            $table->string('gender')->default('male');
+            $table->text('allergies')->nullable();
             $table->timestamps();
         });
     }
