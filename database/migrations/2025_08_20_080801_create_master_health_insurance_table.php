@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('master_health_insurance', function (Blueprint $table) {
-            $table->string('id_insurance')->primary();
+            $table->string('id')->primary();
             $table->string('insurance_name');
             $table->string('contact_info');
             $table->timestamps();

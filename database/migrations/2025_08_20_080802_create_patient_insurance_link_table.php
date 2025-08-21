@@ -10,15 +10,15 @@ return new class extends Migration
     {
         Schema::create('patient_insurance_link', function (Blueprint $table) {
             $table->string('id_link')->primary();
-            $table->string('id_patient');
-            $table->string('id_insurance');
+            $table->string('patient_id');
+            $table->string('insurance_id');
             $table->string('insurance_number');
             $table->date('effective_date');
             $table->date('expiration_date');
             $table->timestamps();
 
-            $table->foreign('id_patient')->references('id_patient')->on('patient')->onDelete('cascade');
-            $table->foreign('id_insurance')->references('id_insurance')->on('master_health_insurance')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');
+            $table->foreign('insurance_id')->references('id')->on('master_health_insurance')->onDelete('cascade');
         });
     }
 
