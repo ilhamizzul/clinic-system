@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Patient extends Model
 {
@@ -11,7 +12,7 @@ class Patient extends Model
 
     protected $table = 'patient';
 
-    protected $primaryKey = 'id_patient';
+    protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -23,18 +24,14 @@ class Patient extends Model
         'phone_number',
         'gender',
         'allergies',
-        'id_patient',
     ];
 
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($patient) {
-            if (empty($patient->id_patient)) {
-                $date = now()->format('ymd');
-                $count = self::whereDate('created_at', now()->toDateString())->count() + 1;
-                $patient->id_patient = 'P' . $date . str_pad($count, 3, '0', STR_PAD_LEFT);
+            if (empty($patient->id)) {
+                $patient->id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
     }
