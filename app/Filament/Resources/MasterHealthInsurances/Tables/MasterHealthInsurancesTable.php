@@ -14,7 +14,7 @@ class MasterHealthInsurancesTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('insurance_id')
                     ->label('ID')
                     ->searchable(),
                 TextColumn::make('insurance_name')

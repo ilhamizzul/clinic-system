@@ -14,7 +14,7 @@ class PatientsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('patient_id')
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
