@@ -12,7 +12,7 @@ class Patient extends Model
 
     protected $table = 'patient';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'patient_id';
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -30,8 +30,8 @@ class Patient extends Model
     {
         parent::boot();
         static::creating(function ($patient) {
-            if (empty($patient->id)) {
-                $patient->id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
+            if (empty($patient->patient_id)) {
+                $patient->patient_id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
     }

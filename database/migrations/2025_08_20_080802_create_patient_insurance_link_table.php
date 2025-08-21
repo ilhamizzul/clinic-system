@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patient_insurance_link', function (Blueprint $table) {
-            $table->string('id_link')->primary();
+            $table->string('link_id')->primary();
             $table->string('patient_id');
             $table->string('insurance_id');
             $table->string('insurance_number');
@@ -17,8 +17,8 @@ return new class extends Migration
             $table->date('expiration_date');
             $table->timestamps();
 
-            $table->foreign('patient_id')->references('id')->on('patient')->onDelete('cascade');
-            $table->foreign('insurance_id')->references('id')->on('master_health_insurance')->onDelete('cascade');
+            $table->foreign('patient_id')->references('patient_id')->on('patient')->onDelete('cascade');
+            $table->foreign('insurance_id')->references('insurance_id')->on('master_health_insurance')->onDelete('cascade');
         });
     }
 
