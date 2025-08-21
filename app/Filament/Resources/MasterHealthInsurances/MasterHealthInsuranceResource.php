@@ -19,7 +19,7 @@ class MasterHealthInsuranceResource extends Resource
 {
     protected static ?string $model = MasterHealthInsurance::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
     protected static string|UnitEnum|null $navigationGroup = 'Master Data';
     protected static ?string $recordTitleAttribute = 'Health Insurance';
     protected static ?string $navigationLabel = 'Health Insurance';
