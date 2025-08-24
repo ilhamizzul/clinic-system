@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
 class Patient extends Model
@@ -34,5 +35,16 @@ class Patient extends Model
                 $patient->patient_id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
+    }
+
+    public function insurances(): BelongsToMany {
+        return $this->belongsToMany(MasterHealthInsurance::class, 'patient_insurance_link')
+        ->using(PatientInsuranceLink::class)
+        ->withPivot([
+            'link_id',
+            'insurance_number',
+            'effective_date',
+            'expiration_date'
+        ])->withTimestamps();
     }
 }

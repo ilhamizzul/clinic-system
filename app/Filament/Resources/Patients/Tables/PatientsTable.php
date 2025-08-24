@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Patients\Tables;
 
+use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,7 +17,8 @@ class PatientsTable
         return $table
             ->columns([
                 TextColumn::make('patient_id')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('NIK')
@@ -25,14 +28,16 @@ class PatientsTable
                     ->date()
                     ->sortable(),
                 TextColumn::make('address')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('phone_number')
                     ->searchable(),
                 TextColumn::make('gender')
                     ->searchable(),
                 TextColumn::make('allergies')
                     ->default('None')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -47,6 +52,7 @@ class PatientsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                ViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

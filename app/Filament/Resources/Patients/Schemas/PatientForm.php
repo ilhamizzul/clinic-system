@@ -6,6 +6,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Schema;
 
 class PatientForm
@@ -17,22 +18,34 @@ class PatientForm
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('NIK')
-                ->label('NIK')
+                    ->minLength(16)
+                    ->maxLength(17)
+                    ->label('NIK')
                     ->required(),
-                DatePicker::make('date_of_birth')
-                    ->required(),
+                Group::make()->schema([
+                    TextInput::make('phone_number')
+                        ->tel()
+                        ->minLength(10)
+                        ->maxLength(15)
+                        ->required(),
+                    DatePicker::make('date_of_birth')
+                        ->required(),
+                    Select::make('gender')
+                        ->options([
+                            'male' => 'Male',
+                            'female' => 'Female',
+                        ])
+                        ->required()->default('male'),
+                ])->columns(3)->columnSpanFull(),
                 Textarea::make('address')
                     ->required(),
-                TextInput::make('phone_number')
-                    ->tel()
-                    ->required(),
-                Select::make('gender')
-                    ->options([
-                        'male' => 'Male',
-                        'female' => 'Female',
-                    ])
-                    ->required()->default('male'),
                 Textarea::make('allergies'),
+            ])
+            ->columns([
+                'default' => 1,
+                'md' => 2,
+                'lg' => 2,
+                'xl' => 2,
             ]);
     }
 }
