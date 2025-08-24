@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Clinic Management System')
+            ->globalSearch(false) 
             ->colors([
                 'primary' => Color::Blue,
             ])
