@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('insurance_name');
             $table->string('contact_info');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

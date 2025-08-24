@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\MasterHealthInsurance;
+use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,15 +12,12 @@ return new class extends Migration
     {
         Schema::create('patient_insurance_link', function (Blueprint $table) {
             $table->string('link_id')->primary();
-            $table->string('patient_id');
-            $table->string('insurance_id');
+            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(MasterHealthInsurance::class);
             $table->string('insurance_number');
             $table->date('effective_date');
             $table->date('expiration_date');
             $table->timestamps();
-
-            $table->foreign('patient_id')->references('patient_id')->on('patient')->onDelete('cascade');
-            $table->foreign('insurance_id')->references('insurance_id')->on('master_health_insurance')->onDelete('cascade');
         });
     }
 

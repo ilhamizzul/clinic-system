@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('gender')->default('male');
             $table->text('allergies')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
