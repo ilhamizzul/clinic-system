@@ -12,9 +12,14 @@ class MasterHealthInsuranceForm
         return $schema
             ->components([
                 TextInput::make('insurance_name')
-                    ->required(),
+                    ->required()
+                    ->minLength(3)
+                    ->maxLength(50),
                 TextInput::make('contact_info')
-                    ->required(),
+                    ->required()
+                    ->numeric()
+                    ->minLength(10)
+                    ->maxLength(15),
             ]);
     }
 }

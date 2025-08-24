@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\MasterHealthInsurances\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -16,7 +17,7 @@ class MasterHealthInsurancesTable
             ->columns([
                 TextColumn::make('insurance_id')
                     ->label('ID')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('insurance_name')
                     ->searchable(),
                 TextColumn::make('contact_info')
@@ -39,6 +40,7 @@ class MasterHealthInsurancesTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make()
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
