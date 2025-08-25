@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class PatientsTable
@@ -27,6 +28,11 @@ class PatientsTable
                 TextColumn::make('date_of_birth')
                     ->date()
                     ->sortable(),
+                TextColumn::make('age')
+                    ->label('Age')
+                    ->getStateUsing(function ($record) {
+                        return Carbon::parse($record->date_of_birth)->age;
+                    }),
                 TextColumn::make('address')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -48,7 +54,13 @@ class PatientsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('gender')
+                    ->label('Gender')
+                    ->options([
+                        'male' => 'Male',
+                        'female' => 'Female',
+                    ])
+                    ->attribute('gender'),
             ])
             ->recordActions([
                 EditAction::make(),
