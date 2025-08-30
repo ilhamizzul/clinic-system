@@ -26,14 +26,21 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->favicon(asset('images/logo/logo.svg'))
+            ->brandLogo(fn () => view('filament.logo'))
+            ->brandLogoHeight('3rem')
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Clinic Management System')
-            ->globalSearch(false) 
             ->colors([
-                'primary' => Color::Blue,
+                'danger' => Color::Red,
+                'gray' => Color::Slate,
+                'info' => Color::Blue,
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            ->font('Poppins')
             ->plugins([
                 FilamentBackgroundsPlugin::make()
                     ->showAttribution(false),
