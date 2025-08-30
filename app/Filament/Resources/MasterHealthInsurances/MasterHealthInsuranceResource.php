@@ -24,7 +24,8 @@ class MasterHealthInsuranceResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
     protected static string|UnitEnum|null $navigationGroup = 'Master Data';
     protected static ?string $navigationLabel = 'Health Insurance';
-    
+    protected static ?string $modelLabel = 'Health Insurance';
+
     public static function form(Schema $schema): Schema
     {
         return MasterHealthInsuranceForm::configure($schema);
@@ -37,6 +38,7 @@ class MasterHealthInsuranceResource extends Resource
 
     public static function table(Table $table): Table
     {
+        // Ignore the intelephense error
         return MasterHealthInsurancesTable::configure($table);
     }
 
