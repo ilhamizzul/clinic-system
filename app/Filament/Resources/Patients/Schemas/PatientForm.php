@@ -16,8 +16,10 @@ class PatientForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->unique(table: 'patient', ignorable: fn ($record) => $record)
                     ->required(),
                 TextInput::make('NIK')
+                    ->unique(table: 'patient', ignorable: fn ($record) => $record)
                     ->minLength(16)
                     ->maxLength(17)
                     ->label('NIK')
