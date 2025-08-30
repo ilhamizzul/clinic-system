@@ -38,7 +38,7 @@ class Patient extends Model
         return $this->belongsToMany(MasterHealthInsurance::class, 'patient_insurance_link')
         ->using(PatientInsuranceLink::class)
         ->withPivot([
-            'link_id',
+            'id',
             'insurance_number',
             'effective_date',
             'expiration_date'
