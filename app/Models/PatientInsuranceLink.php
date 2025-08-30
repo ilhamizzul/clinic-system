@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class PatientInsuranceLink extends Pivot
 {
     protected $table = 'patient_insurance_link';
-    protected $primaryKey = 'link_id';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
 
@@ -17,8 +17,8 @@ class PatientInsuranceLink extends Pivot
     {
         parent::boot();
         static::creating(function ($model) {
-            if (empty($model->link_id)) {
-                $model->link_id = 'LINKINS' . now()->format('ymd') . strtoupper(Str::random(6));
+            if (empty($model->id)) {
+                $model->id = 'LINKINS' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
     }

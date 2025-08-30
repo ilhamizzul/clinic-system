@@ -10,7 +10,7 @@ class MasterHealthInsurance extends Model
 {
     protected $table = 'master_health_insurance';
 
-    protected $primaryKey = 'insurance_id';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
 
@@ -34,8 +34,8 @@ class MasterHealthInsurance extends Model
     {
         parent::boot();
         static::creating(function ($insurance) {
-            if (empty($insurance->insurance_id)) {
-                $insurance->insurance_id = 'INS' . now()->format('ymd') . strtoupper(Str::random(6));
+            if (empty($insurance->id)) {
+                $insurance->id = 'INS' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
     }

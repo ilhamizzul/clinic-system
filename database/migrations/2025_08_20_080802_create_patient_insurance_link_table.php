@@ -11,7 +11,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patient_insurance_link', function (Blueprint $table) {
-            $table->string('link_id')->primary();
+            $table->id();
             $table->foreignIdFor(Patient::class);
             $table->foreignIdFor(MasterHealthInsurance::class);
             $table->string('insurance_number');
