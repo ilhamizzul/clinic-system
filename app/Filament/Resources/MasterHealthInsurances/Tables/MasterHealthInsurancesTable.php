@@ -7,6 +7,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -42,6 +43,10 @@ class MasterHealthInsurancesTable
             ->recordActions([
                 EditAction::make(),
                 DeleteAction::make()
+                    ->successNotification(fn (): ?Notification => Notification::make()
+                        ->title('Health Insurance deleted successfully')
+                        ->body('The Health Insurance record has been deleted successfully.')
+                        ->success()),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
