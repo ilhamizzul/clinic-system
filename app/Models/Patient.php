@@ -13,11 +13,8 @@ class Patient extends Model
 
     protected $table = 'patient';
 
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
-
     protected $fillable = [
+        'patient_id',
         'name',
         'NIK',
         'date_of_birth',
@@ -31,8 +28,8 @@ class Patient extends Model
     {
         parent::boot();
         static::creating(function ($patient) {
-            if (empty($patient->id)) {
-                $patient->id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
+            if (empty($patient->patient_id)) {
+                $patient->patient_id = 'P' . now()->format('ymd') . strtoupper(Str::random(6));
             }
         });
     }

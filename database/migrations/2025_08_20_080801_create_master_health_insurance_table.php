@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('master_health_insurance', function (Blueprint $table) {
             $table->id();
+            $table->string('insurance_id')->unique();
             $table->string('insurance_name');
             $table->string('contact_info');
             $table->timestamps();
