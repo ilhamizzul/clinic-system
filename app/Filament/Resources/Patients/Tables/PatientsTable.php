@@ -41,6 +41,11 @@ class PatientsTable
                     ->searchable(),
                 TextColumn::make('gender')
                     ->searchable(),
+                TextColumn::make('active_insurances_count')
+                    ->label('Active Insurance')
+                    ->getStateUsing(function ($record) {
+                        return $record->insurances()->where('expiration_date', '>', now())->count();
+                    }),
                 TextColumn::make('allergies')
                     ->default('None')
                     ->searchable()
