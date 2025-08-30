@@ -78,9 +78,10 @@ class MasterHealthInsuranceRelationManager extends RelationManager
                     ->schema(fn (AttachAction $action): array => [
                         $action->getRecordSelect()
                             ->label('Insurance')
-                            ->searchable()
-                            ->loadingMessage('Loading insurance...')
-                            ->preload()
+                            // ->searchable()
+                            // ->loadingMessage('Loading insurance...')
+                            // ->preload()
+                            // ->getOptionLabelFromRecordUsing(fn ($record) => $record->insurance_name)
                             ->required(),
                         TextInput::make('insurance_number')->numeric()->required(),
                         Group::make()->schema(
@@ -99,12 +100,10 @@ class MasterHealthInsuranceRelationManager extends RelationManager
             ->recordActions([
                 EditAction::make()->color('warning'),
                 DetachAction::make(),
-                //DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DetachBulkAction::make(),
-                    //DeleteBulkAction::make(),
                 ]),
             ]);
     }

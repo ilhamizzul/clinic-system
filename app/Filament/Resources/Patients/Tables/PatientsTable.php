@@ -18,6 +18,7 @@ class PatientsTable
         return $table
             ->columns([
                 TextColumn::make('patient_id')
+                    ->label('ID')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('name')

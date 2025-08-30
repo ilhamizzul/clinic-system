@@ -9,17 +9,25 @@ use Illuminate\Support\Str;
 class PatientInsuranceLink extends Pivot
 {
     protected $table = 'patient_insurance_link';
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = 'LINKINS' . now()->format('ymd') . strtoupper(Str::random(6));
-            }
-        });
-    }
+    protected $fillable = [
+        'patient_id',
+        'insurance_id',
+        'insurance_number',
+        'effective_date',
+        'expiration_date',
+    ];
+    // protected $primaryKey = 'id';
+    // protected $keyType = 'string';
+    // public $incrementing = false;
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     static::creating(function ($model) {
+    //         if (empty($model->id)) {
+    //             $model->id = 'LINKINS' . now()->format('ymd') . strtoupper(Str::random(6));
+    //         }
+    //     });
+    // }
 }
